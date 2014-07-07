@@ -24,6 +24,7 @@ module Prawnto
     # Include the mixins for ActionController and ActionView.
     def on_load
       ActionController::Base.send :include, Prawnto::ActionControllerMixin
+      ActionMailer::Base.send :include, Prawnto::ActionControllerMixin
       ActionView::Base.send :include, Prawnto::ActionViewMixin
     end
     

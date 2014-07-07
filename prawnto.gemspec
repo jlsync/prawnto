@@ -1,7 +1,7 @@
 
 Gem::Specification.new do |s|
   s.name = "prawnto_2"
-  s.version = '0.1.2'
+  s.version = '3.0.0'
   s.author = ["Forrest"]
   s.email = ["development@forrestzeisler.com"]
   s.date = Time.now.utc.strftime("%Y-%m-%d")
@@ -15,7 +15,7 @@ Gem::Specification.new do |s|
   s.required_rubygems_version = ">= 1.3.6"
   s.platform = Gem::Platform::RUBY
   s.add_dependency('rails', '>=3.1')
-  s.add_dependency('prawn', '>= 0.12.0')
+  s.add_dependency('prawn', '>= 1.1.0')
 
   s.files         = `git ls-files`.split("\n")
   s.test_files    = `git ls-files -- {test,spec,features}/*`.split("\n")
