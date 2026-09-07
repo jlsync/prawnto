@@ -26,6 +26,31 @@ Please check out the {wiki}[http://github.com/forrest/prawnto/wiki] for usage de
 
 In the meantime you can read the original (slightly out of date) documentation/demos at: http://cracklabs.com/prawnto
 
+== Shared PDF partials
+
+To draw Rails partials into the same document, assign the top-level document to
+<code>@pdf</code> before rendering the partials:
+
+  # show.pdf.prawn
+  @pdf = pdf
+  render :partial => 'attendee', :collection => @attendees, :as => :attendee
+
+  # _attendee.pdf.prawn
+  pdf.text attendee.name
+
+Both <code>.prawn</code> and <code>.prawn_dsl</code> partials reuse an existing
+<code>@pdf</code> document and return an empty string. The owning template
+serializes the PDF once, after all partials have drawn into it. Do not call
+<code>pdf.render</code> inside a shared partial.
+
+A partial rendered without a shared document still returns a standalone PDF.
+Top-level templates continue to create and serialize their own documents.
+
+The focused handler regression tests can be run with the bundled Rails/Prawn
+dependencies:
+
+  bundle exec ruby -Ilib test/partial_template_handler_test.rb
+
 == Contributing & Reporting Issues
 
 While I can't promise the most speedy response, I do plan to continue to maintain this gem. Please feel free to report any issues, provide feedback, or make suggestions on the {Issue Tracker}[http://github.com/forrest/prawnto/issues]
