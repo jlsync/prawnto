@@ -47,8 +47,10 @@ module Prawnto
       def compute_prawnto_options
         @prawnto_options ||= DEFAULT_PRAWNTO_OPTIONS.dup
         @prawnto_options[:prawn] ||= {}
-        @prawnto_options[:prawn].merge!(self.class.prawn_hash || {}) {|k,o,n| o}
-        @prawnto_options.merge!(self.class.prawnto_hash || {}) {|k,o,n| o}
+        prawn_hash = self.class.prawn_hash
+        @prawnto_options[:prawn].merge!(prawn_hash) { |k, o, n| o } if prawn_hash && !prawn_hash.empty?
+        prawnto_hash = self.class.prawnto_hash
+        @prawnto_options.merge!(prawnto_hash) { |k, o, n| o } if prawnto_hash && !prawnto_hash.empty?
         @prawnto_options
       end
     end
