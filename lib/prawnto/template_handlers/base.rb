@@ -17,7 +17,7 @@ module Prawnto
         "if defined?(@pdf) && @pdf.is_a?(Prawn::Document);" +
           "pdf = @pdf;" +
           "#{source}\n" +
-          "raw '';" +
+          "''.html_safe;" +
           "else;#{document_source}end;"
       end
     end
